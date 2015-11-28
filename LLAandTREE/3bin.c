@@ -9,27 +9,29 @@ typedef struct nodeT{
     struct nodeT* right;
 }node;
 //----------------------------------------------------------------------------//
-void addNode(node** tree, char[2] myname,char direction) {
+void addNode(node** tree, char[2] myname) {
     node* newNode = malloc(sizeof(node));
     node* last = *tree;
     while(last!=NULL)
     {
-        if(last->name[0] == name[0] && last->name[1] == name[1])
+        if(last->name == name[0] && last->name[1] == name[1])
         {
             printf("Error: Vertex is already existent\n");
             return;
         }
         last = last->next;
     }
-    newVert->vName = name;
-    newVert->eNext = NULL;
-    newVert->next = NULL;
+    node->name = name;
+    node->left = NULL;
+    node->right = NULL;
     if(*graph == NULL)
         *graph = newVert;
     else{
+        if(direction =='l'){
         last = *graph; 
-        while(last->next != NULL)
-            last=last->next;
+        while(last != NULL)
+            last=last->left;
         last->next=newVert;
+        }
     }
 }
