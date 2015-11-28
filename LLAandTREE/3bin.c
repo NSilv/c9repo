@@ -4,34 +4,32 @@
 
 //----------------------------------------------------------------------------//
 typedef struct nodeT{
-    char name[2];
+    char name;
     struct nodeT* left;
     struct nodeT* right;
 }node;
 //----------------------------------------------------------------------------//
-void addNode(node** tree, char[2] myname) {
+void addNode(node** tree, char myname) {
     node* newNode = malloc(sizeof(node));
     node* last = *tree;
-    while(last!=NULL)
-    {
-        if(last->name == name[0] && last->name[1] == name[1])
-        {
-            printf("Error: Vertex is already existent\n");
-            return;
-        }
-        last = last->next;
-    }
     node->name = name;
     node->left = NULL;
     node->right = NULL;
     if(*graph == NULL)
         *graph = newVert;
     else{
-        if(direction =='l'){
-        last = *graph; 
-        while(last != NULL)
-            last=last->left;
-        last->next=newVert;
-        }
+        last = *graph;
+        do{
+            last = indirection(last);
+        }while(last->next!= NULL);
     }
+}
+node* indirection(node* last){
+    char way;
+    printf("Inserichi la direzione");
+    scanf("%c",&way);
+    if(way == 'l'){
+        return last->left;
+    }else if(way == 'r'){
+        return last->right;
 }
