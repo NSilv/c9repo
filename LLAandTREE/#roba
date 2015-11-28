@@ -1,0 +1,33 @@
+void pmllist(vertex* graph){           //print multi linked list
+    if(graph == NULL){
+        printf("Can't print NULL list. Aborting function.\n");
+        return;
+    }
+    printf("$$$$$$$$$$$$$$$$$START$PRINT$$$$$$$$$$$$$$$$$$$\n");
+    while(graph!=NULL){
+        edge* lastedge = graph->eNext;
+        printf("||=====||\n");
+        printf("||-----||");
+        while(lastedge!=NULL){
+             printf("-----|");
+             lastedge = lastedge->next;
+        }
+        printf("\n||");
+        lastedge = graph->eNext;
+        printf("  %c  ||",graph->vName);
+        while(lastedge!=NULL){
+             printf("  %c  |",lastedge->arc->vName);
+             lastedge = lastedge->next;
+        }
+        printf("\n||-----||");
+        lastedge = graph->eNext;
+        while(lastedge!=NULL){
+             printf("-----|");
+             lastedge = lastedge->next;
+        }
+        printf("\n");
+        graph = graph->next;
+    }
+    printf("||=====||\n");
+    printf("$$$$$$$$$$$$$$$$$$$$END$$$$$$$$$$$$$$$$$$$$$$$$\n");
+}// Copyright Silver & Basso(2015), licensed under creative commons
