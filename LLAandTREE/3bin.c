@@ -4,43 +4,49 @@
 
 //----------------------------------------------------------------------------//
 typedef struct nodeT{
-    char name;
+    int key;
     struct nodeT* left;
     struct nodeT* right;
+    int height;
 }node;
 //----------------------------------------------------------------------------//
-void addNode(node** tree, char myname) {
+node* newNode(int key) {
     node* newNode = malloc(sizeof(node));
-    newNode->name = myname;
+    newNode->key = key;
     newNode->left = NULL;
     newNode->right = NULL;
-    if(*tree == NULL)
-        *tree = newNode;
-    else{
-        node* last = *tree;
-        do{
-            if(last!= NULL){
-                last = indirection(last);
-            }
-        }while(last->right != NULL || last->left != NULL);
-        char way;
-        printf("Inserichi la direzione");
-        scanf("%c",&way);
-        if(way == 'l'){
-            last->left = newNode;
-        }else if(way == 'r'){
-            last->right = newNode;
-        }
-    }
+    newNode->height = 1;
+    return newNode;
 }
-node* indirection(node* last){
-    char way;
-    printf("Inserichi la direzione");
-    scanf("%c",&way);
-    if(way == 'l'){
-        return last->left;
-    }else if(way == 'r'){
-        return last->right;
-    }
-    return last;
+node* insert(node* tree,int key){
+    if(tree == NULL)
+        return newNode(key);
+    if(key < node->key)
+        node->left = insert(node->left,key);
+    else
+        node->right = insert(node->right,key);
+    
+    //Height update
+    tree->height = max(height(node->left),height(node->right)) + 1;
+    
+    //Balance tree
+    int balance = getBalance(tree);
+    
+    //4 Casi di albero sbilanciato
+        
+        //Left Left
+        if(balance > 1 && key < tree->left->key)
+            return rightRotate(tree);
+            
+        //Right Right
+        if(balance > -1 && key > tree->left->key)
+            return leftRotate(tree);
+            
+        //Right Left
+        if(balance > )
+            
+        
+}
+int main(){
+    return 0;
 }

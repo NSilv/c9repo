@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h> 
+#include <sys/wait.h>
 int search(int vett[],int left, int right, int value){
     int i;
     for(i = left;i<right;i++)
@@ -8,25 +11,25 @@ int search(int vett[],int left, int right, int value){
         if(vett[i] == value)
             return i;
     }
+    return -1;
 }
 int main(){
     FILE* text = fopen("vettore","r");
-    int i=0,n,x,c;
-    do{
-        
-        fscanf(text,"%d",&c);
-        
-            n++;
-    }while (c != EOF);
+    int i=0,n=0,x,c = 48;
+    while((fscanf(text,"%d ",&c)) != -1)
+	{
+		n=n+1;
+	}
     int vect[n];
-    while ((fscanf(text,"%d",&c))!=0xA){
-        vect[i] = c;
-        getchar();
-        i++;
-    }
-    printf("Che numero vuoi cercare");
+	freopen("vettore","r",text);
+    while((fscanf(text,"%d ",&c)) != -1)
+	{
+		vect[i] = c;
+		i++;
+	}
+    printf("Che numero vuoi cercare: ");
     scanf("%d",&x);
-    pid_t pid[4];  //array di nome pid fatto da num_figli elementi di tipo pid_t	*
+    pid_t pid[4];  //array di nome pid fatto da num_figli elementi di tipo pid_t *
     for(i=0; i<4; i++)
 	{
 		if ((pid[i] = fork()) < 0)
@@ -35,22 +38,26 @@ int main(){
 		}
 		if(!pid[i] && i==0)
 		{
-		    search(vect,0,i/4,x);
+		    if((c = search(vect,0,n/4,x)) != -1)
+		    	printf("pid: %d , elemento trovato in posizione: %d",i,c);
 			exit(EXIT_SUCCESS);
 		}
 		if(!pid[i] && i==1)
 		{
-		    search(vect,i/4,i/2,x);
+		    if((c = search(vect,n/4,n/2,x)) != -1)
+		    	printf("pid: %d , elemento trovato in posizione: %d",i,c);
 			exit(EXIT_SUCCESS);
 		}
 		if(!pid[i] && i==2)
 		{
-		    search(vect,i/2,i*3/2,x);
+		    if(( c = search(vect,n/2,n*3/4,x)) != -1)
+		    	printf("pid: %d , elemento trovato in posizione: %d",i,c);
 			exit(EXIT_SUCCESS);
 		}
 		if(!pid[i] && i==3)
 		{
-		    search(vect,i*3/2,n,x);
+		    if(( c = search(vect,n*3/4,n,x)) != -1 )
+		    	printf("pid: %d , elemento trovato in posizione: %d",i,c);
 			exit(EXIT_SUCCESS);
 		}
 	}
@@ -58,6 +65,7 @@ int main(){
 	{
 		waitpid(pid[i],NULL,0);
 	}
+	fclose(text);
     return EXIT_SUCCESS;
 }
 

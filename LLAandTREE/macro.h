@@ -8,6 +8,7 @@ typedef struct vertexT{
     struct edgeT* eNext;
     struct vertexT* next;
 }vertex;
+
 typedef struct edgeT{
     int weight;
     struct vertexT* arc;

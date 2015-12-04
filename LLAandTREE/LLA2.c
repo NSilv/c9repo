@@ -96,7 +96,7 @@ void fpmllist(vertex* graph){                   //Stampa graph su file
 void vertexInit(vertex** graph){            //Inizializzazione manuale graph
     char ch,a;
     do{
-        printf("Do u want to add a new vertex? [y/n]: ");
+        printf("Do you want to add a new vertex? [y/n]: ");
         scanf("%c",&ch);
         fflush(stdin);
         if(ch != 'n' && ch != 'y'){
