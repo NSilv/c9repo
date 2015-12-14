@@ -390,7 +390,7 @@ void randomGraphCreation(vertex** graph){
     char nodecreated[n];
     char randomletter,startname,destname;
     for(i=0;i<n;i++){
-        randomletter = 'A' + (rand() % 26);
+        randomletter = 'A' + (random() % 26);
         addVertex(graph,randomletter);
         nodecreated[i] = randomletter;
     }

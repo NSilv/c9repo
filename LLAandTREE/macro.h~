@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #define fflush(stdin) while ((getchar()) != '\n')
-#include <time.h>
 
 //----------------------------------------------------------------------------//
 typedef struct vertexT{
